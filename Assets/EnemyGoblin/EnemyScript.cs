@@ -16,19 +16,34 @@ public class EnemyScript : MonoBehaviour
     
     void Start()
     {
-        _navMeshAgent = GetComponent<NavMeshAgent>();
+        Componentlinks();
 
-        
+        NewPatrolPoint();
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        NewPatrolPoint();
+    }
+
+    private void Componentlinks()
+    {
+        _navMeshAgent = GetComponent<NavMeshAgent>();
+    }
+
+    private void NewPatrolPoint()
+    {
         if (_navMeshAgent.remainingDistance == 0)
         {
-            _navMeshAgent.SetDestination((PatrolPoints[Random.Range(0, PatrolPoints.Count)]).position);
+            PickPatrolPoints();
         }
+    }
+
+    private void PickPatrolPoints()
+    {
+        _navMeshAgent.SetDestination((PatrolPoints[Random.Range(0, PatrolPoints.Count)]).position);
     }
 
 
