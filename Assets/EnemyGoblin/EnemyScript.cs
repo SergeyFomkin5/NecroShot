@@ -5,16 +5,31 @@ using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
-    public Transform targetPoint;
+    public List<Transform> PatrolPoints;
+
+    public GameObject Enemy;
+
+    RaycastHit hit;
+
+
     private NavMeshAgent _navMeshAgent;
+    
     void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
+
+        
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        _navMeshAgent.destination = targetPoint.position;
+        if (_navMeshAgent.remainingDistance == 0)
+        {
+            _navMeshAgent.SetDestination((PatrolPoints[Random.Range(0, PatrolPoints.Count)]).position);
+        }
     }
+
+
 }
