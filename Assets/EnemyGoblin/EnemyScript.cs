@@ -7,6 +7,8 @@ public class EnemyScript : MonoBehaviour
 {
     public List<Transform> PatrolPoints;
 
+    public float viewAngle;
+
     public PlayerController Player;
 
     private bool PlayerIsHitByRaycast;
@@ -55,21 +57,21 @@ public class EnemyScript : MonoBehaviour
         var direction = Player.transform.position - transform.position;
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position + Vector3.up, direction, out hit))
+
+        if(Vector3.Angle(transform.forward, direction) < viewAngle)
         {
-            if(hit.collider.gameObject == Player.gameObject)
+            if (Physics.Raycast(transform.position + Vector3.up, direction, out hit))
             {
-                PlayerIsHitByRaycast = true;
+                if (hit.collider.gameObject == Player.gameObject)
+                {
+                    PlayerIsHitByRaycast = true;
+                }
             }
-            else
-            {
-                PlayerIsHitByRaycast = false;
-            }
+            
         }
-        else
-        {
-            PlayerIsHitByRaycast = false;
-        }
+        
+
+       
 
         NewPatrolPoint();
     }
