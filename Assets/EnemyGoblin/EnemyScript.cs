@@ -22,14 +22,14 @@ public class EnemyScript : MonoBehaviour
     {
         Componentlinks();
 
-        NewPatrolPoint();
+        UpdatePatrolPoint();
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        NewPatrolPoint();
+        UpdatePatrolPoint();
         CheckPlayerInView();
         PlayerStalking();
     }
@@ -39,15 +39,15 @@ public class EnemyScript : MonoBehaviour
         _navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
-    private void NewPatrolPoint()
+    private void UpdatePatrolPoint()
     {
-        if (_navMeshAgent.remainingDistance == 0)
+        if (_navMeshAgent.remainingDistance == 0 && !PlayerIsHitByRaycast)
         {
-            PickPatrolPoints();
+            PickNewPatrolPoints();
         }
     }
 
-    private void PickPatrolPoints()
+    private void PickNewPatrolPoints()
     {
         _navMeshAgent.SetDestination((PatrolPoints[Random.Range(0, PatrolPoints.Count)]).position);
     }
@@ -74,7 +74,7 @@ public class EnemyScript : MonoBehaviour
 
        
 
-        NewPatrolPoint();
+        UpdatePatrolPoint();
     }
 
     private void PlayerStalking()
