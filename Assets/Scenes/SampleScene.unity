@@ -2335,6 +2335,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8098627782187916178}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1739674541 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8098627782681741375, guid: cbb5b0cf2b9497847887fb3b8fec69da,
+    type: 3}
+  m_PrefabInstance: {fileID: 8098627782187916178}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739674540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b60e1e70bf591469be5eee33fd28d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1846108451
 GameObject:
   m_ObjectHideFlags: 0
@@ -2890,6 +2902,16 @@ PrefabInstance:
       propertyPath: Enemy
       value: 
       objectReference: {fileID: 1739674540}
+    - target: {fileID: 8275300538055153730, guid: 8fc13f2b9603c3042865e972cf62dbc0,
+        type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1739674541}
+    - target: {fileID: 8275300538055153730, guid: 8fc13f2b9603c3042865e972cf62dbc0,
+        type: 3}
+      propertyPath: viewAngle
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 8275300538055153730, guid: 8fc13f2b9603c3042865e972cf62dbc0,
         type: 3}
       propertyPath: PatrolPoints.Array.data[0]
