@@ -31,7 +31,7 @@ public class EnemyScript : MonoBehaviour
     {
         NewPatrolPoint();
         CheckPlayerInView();
-        
+        PlayerStalking();
     }
 
     private void Componentlinks()
@@ -55,6 +55,7 @@ public class EnemyScript : MonoBehaviour
     private void CheckPlayerInView()
     {
         var direction = Player.transform.position - transform.position;
+        PlayerIsHitByRaycast = false;
 
         RaycastHit hit;
 
@@ -74,6 +75,14 @@ public class EnemyScript : MonoBehaviour
        
 
         NewPatrolPoint();
+    }
+
+    private void PlayerStalking()
+    {
+        if (PlayerIsHitByRaycast)
+        {
+            _navMeshAgent.destination = Player.transform.position;
+        }
     }
 
 
