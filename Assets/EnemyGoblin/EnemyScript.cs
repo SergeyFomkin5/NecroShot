@@ -11,8 +11,6 @@ public class EnemyScript : MonoBehaviour
 
     private bool PlayerIsHitByRaycast;
 
-    public GameObject Enemy;
-
     RaycastHit hit;
 
 
@@ -30,8 +28,8 @@ public class EnemyScript : MonoBehaviour
     void Update()
     {
         NewPatrolPoint();
-
-
+        CheckPlayerInView();
+        PickPatrolPoints();
     }
 
     private void Componentlinks()
