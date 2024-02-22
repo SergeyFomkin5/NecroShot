@@ -29,7 +29,7 @@ public class EnemyScript : MonoBehaviour
     {
         NewPatrolPoint();
         CheckPlayerInView();
-        PickPatrolPoints();
+        
     }
 
     private void Componentlinks()
