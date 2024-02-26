@@ -897,6 +897,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaserGun
       objectReference: {fileID: 0}
+    - target: {fileID: 6811438606097585680, guid: 2c32f8411fd2bcf44a7648ffb16acd1f,
+        type: 3}
+      propertyPath: PlayerCamera
+      value: 
+      objectReference: {fileID: 509651328}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c32f8411fd2bcf44a7648ffb16acd1f, type: 3}
 --- !u!43 &1057797904

@@ -31,7 +31,7 @@ public class LaserScript : MonoBehaviour
             if (Physics.Raycast(rayOrigin, PlayerCamera.transform.forward, out hit, LaserRange))
             {
                 LaserLine.SetPosition(1, hit.point);
-                Destroy(hit.transform.gameObject);
+                //Destroy(hit.transform.gameObject);
             }
             else
             {
