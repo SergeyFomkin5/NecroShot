@@ -9,15 +9,31 @@ public class EnemyScript : MonoBehaviour
 
     public float viewAngle;
 
+    public float Health = 100;
+
+    public float AttackSpeed;
+
+    public float WalkSpeed;
+
+    public float Damage;
+
     public PlayerController Player;
+
+    public Transform PlayerPosition;
 
     private bool PlayerIsHitByRaycast;
 
     RaycastHit hit;
 
 
-    private NavMeshAgent _navMeshAgent;
-    
+    private NavMeshAgent navMeshAgent;
+
+    private void Awake()
+    {
+        PlayerPosition = GameObject.Find("Player").transform;
+        
+    }
+
     void Start()
     {
         Componentlinks();
@@ -29,19 +45,25 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdatePatrolPoint();
-        CheckPlayerInView();
-        PlayerStalking();
+        Patroling();
     }
 
     private void Componentlinks()
     {
-        _navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent.speed = WalkSpeed;
+    }
+
+    private void Patroling()
+    {
+        UpdatePatrolPoint();
+        CheckPlayerInView();
+        PlayerChasing();
     }
 
     private void UpdatePatrolPoint()
     {
-        if (_navMeshAgent.remainingDistance == 0 && !PlayerIsHitByRaycast)
+        if (navMeshAgent.remainingDistance == 0 && !PlayerIsHitByRaycast)
         {
             PickNewPatrolPoints();
         }
@@ -49,7 +71,7 @@ public class EnemyScript : MonoBehaviour
 
     private void PickNewPatrolPoints()
     {
-        _navMeshAgent.SetDestination((PatrolPoints[Random.Range(0, PatrolPoints.Count)]).position);
+        navMeshAgent.SetDestination((PatrolPoints[Random.Range(0, PatrolPoints.Count)]).position);
     }
 
     private void CheckPlayerInView()
@@ -59,7 +81,7 @@ public class EnemyScript : MonoBehaviour
 
         RaycastHit hit;
 
-        if(Vector3.Angle(transform.forward, direction) < viewAngle)
+        if (Vector3.Angle(transform.forward, direction) < viewAngle)
         {
             if (Physics.Raycast(transform.position + Vector3.up, direction, out hit))
             {
@@ -68,22 +90,31 @@ public class EnemyScript : MonoBehaviour
                     PlayerIsHitByRaycast = true;
                 }
             }
-            
         }
-        
-
-       
-
         UpdatePatrolPoint();
     }
 
-    private void PlayerStalking()
+    private void PlayerChasing()
     {
         if (PlayerIsHitByRaycast)
         {
-            _navMeshAgent.destination = Player.transform.position;
+            navMeshAgent.destination = Player.transform.position;
         }
     }
+
+    public void TakeDamage(float damage)
+    {
+        Health -= damage;
+        Debug.Log("Hit");
+        if (Health <= 0) 
+        {
+            Destroy(gameObject);
+        }
+    }
+
+   
+
+    
 
 
 }
