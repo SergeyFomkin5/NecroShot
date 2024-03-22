@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHP : MonoBehaviour
 {
@@ -75,7 +76,7 @@ public class PlayerHP : MonoBehaviour
             Aim.SetActive(false);
             GetComponent<PlayerController>().enabled = false;
             GetComponent<CameraScript>().enabled = false;
-            Time.timeScale = 0;
+            
         }
     }
 }
