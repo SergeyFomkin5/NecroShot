@@ -9,6 +9,8 @@ public class PlayerHP : MonoBehaviour
 
     public float _currentValue;
     public GameObject panel;
+    public GameObject Aim;
+    public GameObject HealthBar;
     public Image HpBar;
     // Start is called before the first frame update
     void Start()
@@ -22,12 +24,7 @@ public class PlayerHP : MonoBehaviour
     {
         //HpBar.fillAmount -= 0.001f;
 
-        if (HpBar.fillAmount <= 0)
-        {
-            panel.SetActive(true);
-            Time.timeScale = 0;
-
-        }
+        PlayerIsDead();
     }
 
     private void OnTriggerStay(Collider other)
@@ -67,5 +64,18 @@ public class PlayerHP : MonoBehaviour
             _currentValue = MaxHp;
         }
         //Обновить полоску здоровья
+    }
+
+    void PlayerIsDead()
+    {
+        if (HpBar.fillAmount <= 0)
+        {
+            panel.SetActive(true);
+            HealthBar.SetActive(false);
+            Aim.SetActive(false);
+            GetComponent<PlayerController>().enabled = false;
+            GetComponent<CameraScript>().enabled = false;
+            Time.timeScale = 0;
+        }
     }
 }
