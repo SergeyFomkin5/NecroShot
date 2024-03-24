@@ -60,10 +60,12 @@ public class PlayerHP : MonoBehaviour
         //Прибавить к текущему здоровью значение amount
         _currentValue += amount;
         //Если текущее здоровье больше, чем максимальное значение
-        if(_currentValue > MaxHp)
-        {
-            _currentValue = MaxHp;
-        }
+        //if(_currentValue > MaxHp)
+        //{
+        //    _currentValue = MaxHp;
+        //}
+        _currentValue = Mathf.Clamp( _currentValue, 0, MaxHp );
+        UpdateHealthbar();
         //Обновить полоску здоровья
     }
 
